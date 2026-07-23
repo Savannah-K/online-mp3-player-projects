@@ -1,0 +1,37 @@
+@font-face {
+    font-family: "Jersey 25";
+    src: url("Jersey25-Regular.woff2") format("woff2");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    list-style:none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background:#e6b8b8;
+    transform-style: preserve-3d;
+    font-family: "Jersey 25";
+
+}
+
+.mp3-player{
+    background: #ececec;
+    width: 240px;
+    height: 360px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: inset 5px 0px 15px 10px #00000090;
+}
+
+.mp3-player .screen {
+    background: #fff;
+
+}

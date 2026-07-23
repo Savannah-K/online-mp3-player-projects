@@ -5,10 +5,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mp3 Web Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+<script src="script.js" ></script>
 </head>
 
 <body>
     <h1>This is a Mp3 Web Player</h1>
-</body>
 
+    <!--mp3 player screen start-->
+    <div class="mp3-player">
+        <div class="mp3-player-screen">
+            <div style"background: linear-gradient(to bottom, #ff 0% #9e9e9e 100%); border-bottom 1px solid #5c5c5c; border-right: 2px solid #00; borded-left: 2px solid #000; font size: 14px; padding 1px;
+
+            <div class="mp3-player-screen-top">
+                <div class="mp3-player-screen-top-left">
+                    <span class="mp3-player-screen-top-left-text">Now Playing</span>
+                </div>
+                <div class="mp3-player-screen-top-right">
+                    <span class="mp3-player-screen-top-right-text">00:00</span>
+                </div>
+            </div>
+            <div class="mp3-player-screen-middle">
+                <div class="mp3-player-screen-middle-album-art">
+                    <img src="" alt="Album Art" />
+                </div>
+                <div class="mp3-player-screen-middle-song-info">
+                    <span class="mp3-player-screen-middle-song-info-title">Song Title</span>
+                    <span class="mp3-player-screen-middle-song-info-artist">Artist Name</span>
+                </div>
+            </div>
+            <div class="mp3-player-screen-bottom">
+                <input type="range" min="0" max="100" value="0" class="mp3-player-screen-bottom-slider" />
+            </div>
+            <div class="controls">
+                <button class="menu">MENU</button>
+                <i class="fas fa-fast-backward"></i>
+                <i class="fas fa-play"></i>
+                <i class="fas fa-pause"></i>
+                <i class="fas fa-fast-forward"></i>
+            </div>
+        </div>
+</body>
 </html>
