@@ -21,25 +21,26 @@ body {
   font-family: 'Jersey 25';
 }
 
-.mp3-player {
-  background: #ececec;
-  width: 240px;
-  height: 360px;
-  border-radius: 20px;
-  position: relative;
-  box-shadow: inset 5px 0px 15px 10px #00000090;
+.player{
+    position: relative;
+    width: 300px;
+    display: block;
 }
 
-.mp3-player .screen {
-  background: #fff;
-  overflow: hidden;
-  position: absolute;
-  left: 50%;
-  top: 15px;
-  transform: translateX(-50%, 0);
-  width: 200px;
-  height: 160px;
-  border-radius: 8px;
-  border: 2px solid #aaa;
-  box-shadow: inset 0px 0px 0px 2px #222;
+.device {
+    width: 100%;
+    display: flex;
+}
+
+.screen {
+    position: absolute;
+    top: 27px;
+    left: 27px;
+    width: 246px;
+    height: 185px;
+    border-radius: 3px;
+    border: 3px solid #363535;
+
+    background: #ffffff;
+    overflow: hidden;
 }

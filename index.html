@@ -10,11 +10,24 @@
       href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
 
   <body>
     <h1>This is a Mp3 Web Player</h1>
+
+    <div class="player">
+      <img src="Assets\Y2KFloral.png" alt="poster" id="poster" class="device" />
+      <div class="screen">
+        <div class="song-title">Song Title</div>
+        <div class="artist">Artist Name</div>
+
+        <input type="range" name="progress" value="0" />
+      </div>
+
+      <audio id="mymusic"></audio>
+    </div>
   </body>
 </html>
