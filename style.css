@@ -26,6 +26,7 @@ body {
     position: relative;
     width: 300px;
     display: block;
+    font-size: 30px;
 }
 
 .device {
@@ -46,31 +47,47 @@ body {
     overflow: hidden;
 }
 
-.control-wheel {
+.wheel {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+
+    bottom: 50px;
+    left: 75px;
+}
+
+.wheel-button {
     position: absolute;
     background: transparent;
     border: none;
     cursor: pointer;
     bottom: 230px;
     left: 170px;
+    font-size: 19px;;
 }
 
 .menu {
-    top: 0px;
-    left: 55px;
+    top: -53px;
+    left: 47px;
+    color: transparent;
 }
 
 .previous {
-    top: 65px;
-    right: 55px;
+    top: 20px;
+    left: -6px;
+    color: transparent;
 }
 
 .next {
-    top: 65;
-    left:10px;
+    top: 20px;
+    left: 144px;
+    color: transparent;
 }
 
 .play-pause {
-    bottom: 65px;
-    left: 65px;
+    bottom: 32px;
+    left: 70px;
+    color: transparent;
 }
+
+

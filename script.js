@@ -1,46 +1,40 @@
-let music = document.querySelector('#mymusic');
-let poster = document.querySelector('#poster');
-let singer = document.querySelector('#singer');
-let date = document.querySelector('#date');
+const fileInput = document.getElementById("audio-file");
+      const audio = document.getElementById("audio");
+      const progress = document.querySelector('input[name="progress"]');
+      const playPause = document.querySelector(".play-pause");
+      const songTitle = document.querySelector(".song-title");
 
-let back = document.querySelector('.fa-fast-backward');
-let play = document.querySelector('.fa-play');
-let pause = document.querySelector('.fa-pause');
-let next = document.querySelector('.fa-fast-forward');
-let audioFile = document.querySelector('#audio-file');
+      fileInput.addEventListener("change", () => {
+        const file = fileInput.files[0];
+        if (!file) return;
 
-audioFile.addEventListener('change', function () {
-  let file = this.files[0];
-  let reader = new FileReader();
+        audio.src = URL.createObjectURL(file);
+        songTitle.textContent = file.name.replace(/\.[^/.]+$/, "");
+        audio.play();
+      });
 
-  reader.onload = function (e) {
-    music.src = e.target.result;
-  };
+      playPause.addEventListener("click", () => {
+        if (!audio.src) return;
+        if (audio.paused) audio.play();
+        else audio.pause();
+      });
 
-  reader.readAsDataURL(file);
-});
+      audio.addEventListener("loadedmetadata", () => {
+        progress.max = audio.duration;
+      });
 
-let music = document.querySelector('#mymusic');
-let upload = document.querySelector('#upload');
+      audio.addEventListener("timeupdate", () => {
+        progress.value = audio.currentTime;
+      });
 
-upload.addEventListener('change', function (event) {
-  let file = event.target.files[0];
+      progress.addEventListener("input", () => {
+        audio.currentTime = progress.value;
+      });
 
-  if (file) {
-    let songURL = URL.createObjectURL(file);
-    music.src = songURL;
-    music.play();
-  }
-});
- 
-let playButton = document.querySelector('.fa-play');
-playButton.addEventListener('click', function () {
-  music.play();
+      audio.addEventListener("play", () => {
+        playPause.textContent = "❚❚";
+      });
 
-  if (music.paused) {
-    music.play();
-  } 
-  else {
-    music.pause();
-  } 
-});
+      audio.addEventListener("pause", () => {
+        playPause.textContent = "▶";
+      });
