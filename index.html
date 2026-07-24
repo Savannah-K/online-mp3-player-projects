@@ -19,7 +19,7 @@
     <h1>This is a Mp3 Web Player</h1>
 
     <div class="player">
-      <img src="Assets\Y2KFloral.png" alt="poster" id="poster" class="device" />
+      <img src="Assets/Y2KFloral.png" alt="poster" id="poster" class="device" />
       <div class="screen">
         <div class="song-title">Song Title</div>
         <div class="artist">Artist Name</div>
@@ -27,7 +27,17 @@
         <input type="range" name="progress" value="0" />
       </div>
 
-      <audio id="mymusic"></audio>
+      <div class="audio-player">
+        <audio id="mymusic"></audio>
+        <input type="file" accept="audio/*" id="audio-file" />
+      </div>
+    </div>
+
+    <div class="control-wheel">
+      <button class="wheel-button menu">MENU</button>
+      <button class="wheel-button play-pause">PLAY/PAUSE</button>
+      <button class="wheel-button next">NEXT</button>
+      <button class="wheel-button previous">PREVIOUS</button>
     </div>
   </body>
 </html>

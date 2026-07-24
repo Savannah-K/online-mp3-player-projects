@@ -13,15 +13,16 @@
 
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
   background: #e6b8b8;
-  transform-style: preserve-3d;
   font-family: 'Jersey 25';
+  margin-top: 10px;
 }
 
 .player{
+    margin-top: 40px;
     position: relative;
     width: 300px;
     display: block;
@@ -29,7 +30,7 @@ body {
 
 .device {
     width: 100%;
-    display: flex;
+    display: block;
 }
 
 .screen {
@@ -43,4 +44,33 @@ body {
 
     background: #ffffff;
     overflow: hidden;
+}
+
+.control-wheel {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    bottom: 230px;
+    left: 170px;
+}
+
+.menu {
+    top: 0px;
+    left: 55px;
+}
+
+.previous {
+    top: 65px;
+    right: 55px;
+}
+
+.next {
+    top: 65;
+    left:10px;
+}
+
+.play-pause {
+    bottom: 65px;
+    left: 65px;
 }
