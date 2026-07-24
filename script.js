@@ -38,3 +38,8 @@ const fileInput = document.getElementById("audio-file");
       audio.addEventListener("pause", () => {
         playPause.textContent = "▶";
       });
+
+      if (title.scrollWidth > title.clientWidth) {
+        title.classList.add("scroll");
+      }
+

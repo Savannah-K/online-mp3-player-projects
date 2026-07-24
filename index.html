@@ -21,14 +21,24 @@
     <div class="player">
       <img src="Assets/Y2KFloral.png" alt="poster" id="poster" class="device" />
       <div class="screen">
-        <div class="song-title">Song Title</div>
+        <div class="song-title-container">
+          <div class="song-title">Song Title</div>
+        </div>
 
-        <input type="range" name="progress" value="0" min="0" step="0.1" />
+        <input
+          type="range"
+          name="progress"
+          class="progress"
+          value="0"
+          min="0"
+          step="0.1"
+        />
       </div>
 
       <div class="audio-player">
-        <input type="file" accept="audio/*" id="audio-file" />
+        <input type="file" accept="audio/*" id="audio-file" hidden />
         <audio id="audio" preload="metadata"></audio>
+        <label for="audio-file" class="btn upload-button">Choose Music</label>
       </div>
       <div class="wheel">
         <button class="wheel-button menu">MENU</button>
@@ -39,4 +49,3 @@
     </div>
   </body>
 </html>
->
