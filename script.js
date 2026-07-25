@@ -1,45 +1,82 @@
-const fileInput = document.getElementById("audio-file");
-      const audio = document.getElementById("audio");
-      const progress = document.querySelector('input[name="progress"]');
-      const playPause = document.querySelector(".play-pause");
-      const songTitle = document.querySelector(".song-title");
+const fileInput = document.getElementById('audio-file');
+const audio = document.getElementById('audio');
+const progress = document.querySelector('input[name="progress"]');
+const playPause = document.querySelector('.play-pause');
+const songTitle = document.querySelector('.song-title');
+const nextButton = document.querySelector('.next');
+const previousButton = document.querySelector('.previous');
 
-      fileInput.addEventListener("change", () => {
-        const file = fileInput.files[0];
-        if (!file) return;
+function loadSong(index) {
+  const file = playlist[index];
 
-        audio.src = URL.createObjectURL(file);
-        songTitle.textContent = file.name.replace(/\.[^/.]+$/, "");
-        audio.play();
-      });
+  audio.src = URL.createObjectURL(file);
+  songTitle.textContent = file.name.replace(/\.[^/.]+$/, '');
+  audio.play();
+}
 
-      playPause.addEventListener("click", () => {
-        if (!audio.src) return;
-        if (audio.paused) audio.play();
-        else audio.pause();
-      });
+//Playlist variables for multiple files
+let playlist = [];
+let currentSong = 0;
 
-      audio.addEventListener("loadedmetadata", () => {
-        progress.max = audio.duration;
-      });
+fileInput.addEventListener('change', () => {
+  playlist = Array.from(fileInput.files);
 
-      audio.addEventListener("timeupdate", () => {
-        progress.value = audio.currentTime;
-      });
+  if (playlist.length === 0) return;
 
-      progress.addEventListener("input", () => {
-        audio.currentTime = progress.value;
-      });
+  currentSong = 0;
 
-      audio.addEventListener("play", () => {
-        playPause.textContent = "❚❚";
-      });
+  loadSong(currentSong);
+});
 
-      audio.addEventListener("pause", () => {
-        playPause.textContent = "▶";
-      });
+playPause.addEventListener('click', () => {
+  if (!audio.src) return;
+  if (audio.paused) audio.play();
+  else audio.pause();
+});
 
-      if (title.scrollWidth > title.clientWidth) {
-        title.classList.add("scroll");
-      }
+audio.addEventListener('loadedmetadata', () => {
+  progress.max = audio.duration;
+});
 
+audio.addEventListener('timeupdate', () => {
+  progress.value = audio.currentTime;
+});
+
+progress.addEventListener('input', () => {
+  audio.currentTime = progress.value;
+});
+
+audio.addEventListener('play', () => {
+  playPause.textContent = '❚❚';
+});
+
+audio.addEventListener('pause', () => {
+  playPause.textContent = '▶';
+});
+
+if (songTitle.scrollWidth > songTitle.clientWidth) {
+  songTitle.classList.add('scroll');
+}
+
+nextButton.addEventListener('click', () => {
+  if (playlist.length === 0) return;
+
+  currentSong++;
+if (currentSong >= playlist.length) {
+  loadSong (currentSong) = 0;
+}
+
+});
+
+
+previousButton.addEventListener('click', () => {
+  if (playlist.length === 0) return;
+
+  currentSong--;
+
+  if (currentSong < 0) {
+    currentSong = playlist.length - 1;
+  }
+
+  loadSong(currentSong);
+});
