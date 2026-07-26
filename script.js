@@ -66,6 +66,8 @@ if (currentSong >= playlist.length) {
   loadSong (currentSong) = 0;
 }
 
+  loadSong(currentSong);
+
 });
 
 
