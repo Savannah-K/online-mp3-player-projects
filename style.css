@@ -16,9 +16,10 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background: #e6b8b8;
   font-family: 'Jersey 25';
   margin-top: 10px;
+  background-image: url("Assets/1406225jr72tr8yng.gif");
+  background-repeat: repeat;
 }
 
 .player {

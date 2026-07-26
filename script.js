@@ -5,6 +5,27 @@ const playPause = document.querySelector('.play-pause');
 const songTitle = document.querySelector('.song-title');
 const nextButton = document.querySelector('.next');
 const previousButton = document.querySelector('.previous');
+const poster = document.getElementById("poster");
+const backgrounds = [
+  "Assets/bg-colorful-ribbon.png" , 
+  "Assets/bg-sparkle-butterfly.gif" ,
+  "Assets/bg-y2k-bubble.jpg"
+];
+
+const skins = [
+  "Assets/BlackDiamonds.png" ,
+  "Assets/BlackStar.png" ,
+  "Assets/BrightSummer.png",
+  "Assets/Floral.png",
+  "Assets/Lace.png" ,
+  "Assets/LeapordPrint.png",
+  "Assets/Neopolitan.png" ,
+  "Assets/PinkPlaid.png" ,
+  "Assets/SwirlyBlue.png" ,
+  "Assets/Y2KBubble.png",
+  "Assets/Y2KFloral.png",
+  "Assets/Y2KStars.png"
+]
 
 function loadSong(index) {
   const file = playlist[index];
@@ -63,7 +84,7 @@ nextButton.addEventListener('click', () => {
 
   currentSong++;
 if (currentSong >= playlist.length) {
-  loadSong (currentSong) = 0;
+  currentSong = 0;
 }
 
   loadSong(currentSong);
@@ -82,3 +103,15 @@ previousButton.addEventListener('click', () => {
 
   loadSong(currentSong);
 });
+
+//Background and ipod theme selection
+let currentSkin = 0;
+let currentBackground = 0;
+
+function changeSkin(index) {
+  poster.src = skins[index]
+}
+
+function  changeBackground(index) {
+  document.body.style.backgroundImage = `url("${backgrounds[index]}")`;
+}
