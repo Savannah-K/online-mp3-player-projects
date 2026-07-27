@@ -5,6 +5,8 @@ const playPause = document.querySelector('.play-pause');
 const songTitle = document.querySelector('.song-title');
 const nextButton = document.querySelector('.next');
 const previousButton = document.querySelector('.previous');
+const menuButton = document.querySelector('.menu')
+const screenContent = document.querySelector('.screen-content')
 const poster = document.getElementById("poster");
 const backgrounds = [
   "Assets/bg-colorful-ribbon.png" , 
@@ -107,6 +109,7 @@ previousButton.addEventListener('click', () => {
 //Background and ipod theme selection
 let currentSkin = 0;
 let currentBackground = 0;
+let themeIndex = 0;
 
 function changeSkin(index) {
   poster.src = skins[index]
@@ -115,3 +118,44 @@ function changeSkin(index) {
 function  changeBackground(index) {
   document.body.style.backgroundImage = `url("${backgrounds[index]}")`;
 }
+
+let menuOpen = false;
+
+function openMenu(){
+  menuOpen = true;
+
+  screenContent.innerHTML = `
+    <div>Themes</div>
+    <div>Music</div>
+    <div>Music Settings</div> 
+  `;
+
+}
+
+menuButton.addEventListener("click", () => {
+  if (!menuOpen){
+    openMenu();
+  }
+});
+
+function openThemes(){
+  screenContent.innerHTML = `
+  <div>Theme ${themeIndex}</div>
+  <div>Press ▶ to change</div>
+`;
+}
+
+nextButton.addEventListener("click",() => {
+  if(menuOpen){
+    themeIndex++;
+
+    if(themeIndex >= skins.length){
+      themeIndex = 0;
+    }
+
+    poster.src = skins[themeIndex];
+
+    document.body.style.backgroundImage = `url("${backgrounds[themeIndex % backgrounds.length]}")`;
+  }
+
+});

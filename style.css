@@ -18,7 +18,7 @@ body {
   min-height: 100vh;
   font-family: 'Jersey 25';
   margin-top: 10px;
-  background-image: url("Assets/1406225jr72tr8yng.gif");
+  background-image: url('Assets/1406225jr72tr8yng.gif');
   background-repeat: repeat;
 }
 
