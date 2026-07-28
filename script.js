@@ -5,29 +5,46 @@ const playPause = document.querySelector('.play-pause');
 const songTitle = document.querySelector('.song-title');
 const nextButton = document.querySelector('.next');
 const previousButton = document.querySelector('.previous');
-const menuButton = document.querySelector('.menu')
-const screenContent = document.querySelector('.screen-content')
+const menuButton = document.querySelector('.menu');
+const screenContent = document.querySelector('.screen-content');
 const poster = document.getElementById("poster");
+
 const backgrounds = [
-  "Assets/bg-colorful-ribbon.png" , 
-  "Assets/bg-sparkle-butterfly.gif" ,
+  "Assets/bg-colorful-ribbon.png",
+  "Assets/bg-sparkle-butterfly.gif",
   "Assets/bg-y2k-bubble.jpg"
 ];
 
 const skins = [
-  "Assets/BlackDiamonds.png" ,
-  "Assets/BlackStar.png" ,
+  "Assets/BlackDiamonds.png",
+  "Assets/BlackStar.png",
   "Assets/BrightSummer.png",
   "Assets/Floral.png",
-  "Assets/Lace.png" ,
+  "Assets/Lace.png",
   "Assets/LeapordPrint.png",
-  "Assets/Neopolitan.png" ,
-  "Assets/PinkPlaid.png" ,
-  "Assets/SwirlyBlue.png" ,
+  "Assets/Neopolitan.png",
+  "Assets/PinkPlaid.png",
+  "Assets/SwirlyBlue.png",
   "Assets/Y2KBubble.png",
   "Assets/Y2KFloral.png",
   "Assets/Y2KStars.png"
-]
+];
+
+const menuItems = [
+  "Themes",
+  "Music",
+  "Music Settings"
+];
+
+let selectMenu = 0;
+
+let playlist = [];
+let currentSong = 0;
+
+let currentSkin = 0;
+let currentBackground = 0;
+let themeIndex = 0;
+let menuOpen = false;
 
 function loadSong(index) {
   const file = playlist[index];
@@ -37,9 +54,38 @@ function loadSong(index) {
   audio.play();
 }
 
-//Playlist variables for multiple files
-let playlist = [];
-let currentSong = 0;
+function changeSkin(index) {
+  poster.src = skins[index];
+}
+
+function changeBackground(index) {
+  document.body.style.backgroundImage = `url("${backgrounds[index]}")`;
+}
+
+function openMenu() {
+  menuOpen = true;
+
+  screenContent.innerHTML = "";
+
+  menuItems.forEach((item, index) => {
+
+    const div = document.createElement("div");
+    div.textContent = item;
+
+    if(index === selectMenu){
+      div.classList.add("selected");
+    }
+
+    screenContent.appendChild(div);
+  });
+}
+
+function openThemes() {
+  screenContent.innerHTML = `
+    <div>Theme ${themeIndex}</div>
+    <div>Press ▶ to change</div>
+  `;
+}
 
 fileInput.addEventListener('change', () => {
   playlist = Array.from(fileInput.files);
@@ -47,12 +93,12 @@ fileInput.addEventListener('change', () => {
   if (playlist.length === 0) return;
 
   currentSong = 0;
-
   loadSong(currentSong);
 });
 
 playPause.addEventListener('click', () => {
   if (!audio.src) return;
+
   if (audio.paused) audio.play();
   else audio.pause();
 });
@@ -82,17 +128,30 @@ if (songTitle.scrollWidth > songTitle.clientWidth) {
 }
 
 nextButton.addEventListener('click', () => {
+  if (menuOpen) {
+    themeIndex++;
+
+    if (themeIndex >= skins.length) {
+      themeIndex = 0;
+    }
+
+    changeSkin(themeIndex);
+    changeBackground(themeIndex % backgrounds.length);
+
+    openThemes();
+    return;
+  }
+
   if (playlist.length === 0) return;
 
   currentSong++;
-if (currentSong >= playlist.length) {
-  currentSong = 0;
-}
+
+  if (currentSong >= playlist.length) {
+    currentSong = 0;
+  }
 
   loadSong(currentSong);
-
 });
-
 
 previousButton.addEventListener('click', () => {
   if (playlist.length === 0) return;
@@ -106,56 +165,8 @@ previousButton.addEventListener('click', () => {
   loadSong(currentSong);
 });
 
-//Background and ipod theme selection
-let currentSkin = 0;
-let currentBackground = 0;
-let themeIndex = 0;
-
-function changeSkin(index) {
-  poster.src = skins[index]
-}
-
-function  changeBackground(index) {
-  document.body.style.backgroundImage = `url("${backgrounds[index]}")`;
-}
-
-let menuOpen = false;
-
-function openMenu(){
-  menuOpen = true;
-
-  screenContent.innerHTML = `
-    <div>Themes</div>
-    <div>Music</div>
-    <div>Music Settings</div> 
-  `;
-
-}
-
-menuButton.addEventListener("click", () => {
-  if (!menuOpen){
+menuButton.addEventListener('click', () => {
+  if (!menuOpen) {
     openMenu();
   }
-});
-
-function openThemes(){
-  screenContent.innerHTML = `
-  <div>Theme ${themeIndex}</div>
-  <div>Press ▶ to change</div>
-`;
-}
-
-nextButton.addEventListener("click",() => {
-  if(menuOpen){
-    themeIndex++;
-
-    if(themeIndex >= skins.length){
-      themeIndex = 0;
-    }
-
-    poster.src = skins[themeIndex];
-
-    document.body.style.backgroundImage = `url("${backgrounds[themeIndex % backgrounds.length]}")`;
-  }
-
 });
