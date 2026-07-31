@@ -9,7 +9,8 @@ const menuButton = document.querySelector('.menu');
 const selectButton = document.querySelector('.select');
 const screenContent = document.querySelector('.screen-content');
 const poster = document.getElementById('poster');
-let currentScreen = player;
+
+let currentScreen = "player";
 let menuOpen = false;
 let shuffle = false;
 
@@ -17,6 +18,18 @@ const backgrounds = [
   'Assets/bg-colorful-ribbon.png',
   'Assets/bg-sparkle-butterfly.gif',
   'Assets/bg-y2k-bubble.jpg',
+  'Assets/bg-black bg rainbow stars falling .gif',
+  'Assets/bg-blue bunny head.png',
+  'Assets/bg-blue dark night sky stars .gif',
+  'Assets/bg-green bunny head.png',
+  'Assets/bg-green grass pixel .gif',
+  'Assets/bg-hot pink blurry stars black bg .GIF',
+  'Assets/bg-hot pink_magenta y2k stars .JPG',
+  'Assets/bg-orange bunny head.png',
+  'Assets/bg-purple_gray_grey bunny head.png',
+  'Assets/bg-rainbow [flash] bubbles (transparent_overlay) .gif',
+  'Assets/bg-rainbow confetti raining hearts (transparent_overlay) .GIF',
+  'Assets/bg-rainbowflashscenecheckered1-ezgif.com-crop.gif',
 ];
 
 const skins = [
@@ -64,6 +77,7 @@ function changeBackground(index) {
 
 function openMenu() {
   menuOpen = true;
+  currentScreen = "menu";
 
   screenContent.innerHTML = '';
 
@@ -93,7 +107,16 @@ function openThemes() {
 
     <div>▶ Change</div>
   `;
+}
 
+function openMusicSettings() {
+  currentScreen = "settings";
+
+  screenContent.innerHTML = `
+    <div class="selected">
+      Shuffle: ${shuffle ? "On" : "Off"}
+    </div>
+  `;
 }
 
 fileInput.addEventListener('change', () => {
@@ -137,63 +160,40 @@ if (songTitle.scrollWidth > songTitle.clientWidth) {
 }
 
 nextButton.addEventListener('click', () => {
-  
+
   if (currentScreen === "themes") {
-    selectedThemeOption++;
-
-    if (selectedThemeOption > 1) {
-      selectedThemeOption = 0;
-    }
-
+    selectedThemeOption = (selectedThemeOption + 1) % themeOptions.length;
     openThemes();
     return;
   }
-  
+
   if (menuOpen) {
-    selectedMenu++;
-
-    if (selectedMenu >= menuItems.length) {
-      selectedMenu = 0;
-    }
-
+    selectedMenu = (selectedMenu + 1) % menuItems.length;
     openMenu();
     return;
   }
 
   if (playlist.length === 0) return;
 
-  currentSong++;
-
-  if (currentSong >= playlist.length) {
-    currentSong = 0;
+  if (shuffle) {
+    currentSong = Math.floor(Math.random() * playlist.length);
+  } else {
+    currentSong = (currentSong + 1) % playlist.length;
   }
 
   loadSong(currentSong);
-
-  if (shuffle) {
-
-  currentSong = Math.floor(Math.random() * playlist.length);
-
-}
-else {
-
-  currentSong++;
-
-  if (currentSong >= playlist.length) {
-    currentSong = 0;
-  }
-
-}
 });
 
 previousButton.addEventListener('click', () => {
+
+  if (currentScreen === "themes") {
+    selectedThemeOption = selectedThemeOption === 0 ? themeOptions.length - 1 : selectedThemeOption - 1;
+    openThemes();
+    return;
+  }
+
   if (menuOpen) {
-    selectedMenu--;
-
-    if (selectedMenu < 0) {
-      selectedMenu = menuItems.length - 1;
-    }
-
+    selectedMenu = selectedMenu === 0 ? menuItems.length - 1 : selectedMenu - 1;
     openMenu();
     return;
   }
@@ -209,6 +209,15 @@ previousButton.addEventListener('click', () => {
   loadSong(currentSong);
 });
 
+menuButton.addEventListener("click", () => {
+  if (currentScreen === "player") {
+    openMenu();
+  } else {
+    currentScreen = "player";
+    menuOpen = false; //hehe. idk why but I love boolean terms
+    screenContent.innerHTML = "";
+  }
+});
 
 selectButton.addEventListener("click", () => {
 
@@ -223,7 +232,6 @@ selectButton.addEventListener("click", () => {
       }
 
       changeBackground(currentBackground);
-menuButton
     }
 
     else {
@@ -235,71 +243,32 @@ menuButton
       }
 
       changeSkin(currentSkin);
-
     }
 
     openThemes();
     return;
   }
 
+  if (currentScreen === "settings") {
+    shuffle = !shuffle;
+    openMusicSettings();
+    return;
+  }
+
   if (!menuOpen) return;
 
-  if (selectedMenu === 0){
+  if (selectedMenu === 0) {
     openThemes();
   }
-  
+
   else if (selectedMenu === 1) {
+    currentScreen = "music";
     screenContent.innerHTML = `
       <div>Music</div>
       <div>Your Songs</div>`;
   }
 
-  else if (selectedMenu ===2){
-    screenContent.innerHTML = `
-    <div>Shuffle</div>
-    `;
+  else if (selectedMenu === 2) {
+    openMusicSettings();
   }
-
-  if (currentScreen === "settings") {
-
-  shuffle = !shuffle;
-
-  openMusicSettings();
-  return;
-
-}
-
-
 });
-
-menuButton.addEventListener("click", ()=> {
-  let currentScreen = "player";
-
-if (currentScreen === "player") {
-  currentScreen = "menu";
-  openMenu();
-}
-
-else if (currentScreen === "menu"){
-  currentScreen = "player";
-  menuOpen = false; //hehe. idk why but I love boolean terms
-  screenContent.innerHTML = "";
-}
-
-else {
-  currentScreen = "menu";
-  openMenu();
-}
-});
-
-
-function openMusicSettings(){
-
-  currentScreen = "settings";
-
-  screenContent.innerHTML = `
-  <div class="selected">
-  Shuffle: ${shuffle? "On" : "off"}
-  </div>  `;
-}
-
