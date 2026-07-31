@@ -6,45 +6,45 @@ const songTitle = document.querySelector('.song-title');
 const nextButton = document.querySelector('.next');
 const previousButton = document.querySelector('.previous');
 const menuButton = document.querySelector('.menu');
+const selectButton = document.querySelector('.select');
 const screenContent = document.querySelector('.screen-content');
-const poster = document.getElementById("poster");
+const poster = document.getElementById('poster');
+let currentScreen = player;
+let menuOpen = false;
+let shuffle = false;
 
 const backgrounds = [
-  "Assets/bg-colorful-ribbon.png",
-  "Assets/bg-sparkle-butterfly.gif",
-  "Assets/bg-y2k-bubble.jpg"
+  'Assets/bg-colorful-ribbon.png',
+  'Assets/bg-sparkle-butterfly.gif',
+  'Assets/bg-y2k-bubble.jpg',
 ];
 
 const skins = [
-  "Assets/BlackDiamonds.png",
-  "Assets/BlackStar.png",
-  "Assets/BrightSummer.png",
-  "Assets/Floral.png",
-  "Assets/Lace.png",
-  "Assets/LeapordPrint.png",
-  "Assets/Neopolitan.png",
-  "Assets/PinkPlaid.png",
-  "Assets/SwirlyBlue.png",
-  "Assets/Y2KBubble.png",
-  "Assets/Y2KFloral.png",
-  "Assets/Y2KStars.png"
+  'Assets/BlackDiamonds.png',
+  'Assets/BlackStar.png',
+  'Assets/BrightSummer.png',
+  'Assets/Floral.png',
+  'Assets/Lace.png',
+  'Assets/LeapordPrint.png',
+  'Assets/Neopolitan.png',
+  'Assets/PinkPlaid.png',
+  'Assets/SwirlyBlue.png',
+  'Assets/Y2KBubble.png',
+  'Assets/Y2KFloral.png',
+  'Assets/Y2KStars.png',
 ];
 
-const menuItems = [
-  "Themes",
-  "Music",
-  "Music Settings"
-];
+const menuItems = ['Themes', 'Music', 'Music Settings'];
 
-let selectMenu = 0;
+let selectedMenu = 0;
 
 let playlist = [];
 let currentSong = 0;
 
 let currentSkin = 0;
 let currentBackground = 0;
-let themeIndex = 0;
-let menuOpen = false;
+let selectedThemeOption = 0;
+const themeOptions = ["Background", "Skin"];
 
 function loadSong(index) {
   const file = playlist[index];
@@ -65,15 +65,14 @@ function changeBackground(index) {
 function openMenu() {
   menuOpen = true;
 
-  screenContent.innerHTML = "";
+  screenContent.innerHTML = '';
 
   menuItems.forEach((item, index) => {
-
-    const div = document.createElement("div");
+    const div = document.createElement('div');
     div.textContent = item;
 
-    if(index === selectMenu){
-      div.classList.add("selected");
+    if (index === selectedMenu) {
+      div.classList.add('selected');
     }
 
     screenContent.appendChild(div);
@@ -81,10 +80,20 @@ function openMenu() {
 }
 
 function openThemes() {
+  currentScreen = "themes";
+
   screenContent.innerHTML = `
-    <div>Theme ${themeIndex}</div>
-    <div>Press ▶ to change</div>
+    <div class="${selectedThemeOption === 0 ? "selected" : ""}">
+      Background ${currentBackground + 1}
+    </div>
+
+    <div class="${selectedThemeOption === 1 ? "selected" : ""}">
+      Skin ${currentSkin + 1}
+    </div>
+
+    <div>▶ Change</div>
   `;
+
 }
 
 fileInput.addEventListener('change', () => {
@@ -128,17 +137,26 @@ if (songTitle.scrollWidth > songTitle.clientWidth) {
 }
 
 nextButton.addEventListener('click', () => {
-  if (menuOpen) {
-    themeIndex++;
+  
+  if (currentScreen === "themes") {
+    selectedThemeOption++;
 
-    if (themeIndex >= skins.length) {
-      themeIndex = 0;
+    if (selectedThemeOption > 1) {
+      selectedThemeOption = 0;
     }
 
-    changeSkin(themeIndex);
-    changeBackground(themeIndex % backgrounds.length);
-
     openThemes();
+    return;
+  }
+  
+  if (menuOpen) {
+    selectedMenu++;
+
+    if (selectedMenu >= menuItems.length) {
+      selectedMenu = 0;
+    }
+
+    openMenu();
     return;
   }
 
@@ -151,9 +169,35 @@ nextButton.addEventListener('click', () => {
   }
 
   loadSong(currentSong);
+
+  if (shuffle) {
+
+  currentSong = Math.floor(Math.random() * playlist.length);
+
+}
+else {
+
+  currentSong++;
+
+  if (currentSong >= playlist.length) {
+    currentSong = 0;
+  }
+
+}
 });
 
 previousButton.addEventListener('click', () => {
+  if (menuOpen) {
+    selectedMenu--;
+
+    if (selectedMenu < 0) {
+      selectedMenu = menuItems.length - 1;
+    }
+
+    openMenu();
+    return;
+  }
+
   if (playlist.length === 0) return;
 
   currentSong--;
@@ -165,8 +209,97 @@ previousButton.addEventListener('click', () => {
   loadSong(currentSong);
 });
 
-menuButton.addEventListener('click', () => {
-  if (!menuOpen) {
-    openMenu();
+
+selectButton.addEventListener("click", () => {
+
+  if (currentScreen === "themes") {
+
+    if (selectedThemeOption === 0) {
+
+      currentBackground++;
+
+      if (currentBackground >= backgrounds.length) {
+        currentBackground = 0;
+      }
+
+      changeBackground(currentBackground);
+menuButton
+    }
+
+    else {
+
+      currentSkin++;
+
+      if (currentSkin >= skins.length) {
+        currentSkin = 0;
+      }
+
+      changeSkin(currentSkin);
+
+    }
+
+    openThemes();
+    return;
   }
+
+  if (!menuOpen) return;
+
+  if (selectedMenu === 0){
+    openThemes();
+  }
+  
+  else if (selectedMenu === 1) {
+    screenContent.innerHTML = `
+      <div>Music</div>
+      <div>Your Songs</div>`;
+  }
+
+  else if (selectedMenu ===2){
+    screenContent.innerHTML = `
+    <div>Shuffle</div>
+    `;
+  }
+
+  if (currentScreen === "settings") {
+
+  shuffle = !shuffle;
+
+  openMusicSettings();
+  return;
+
+}
+
+
 });
+
+menuButton.addEventListener("click", ()=> {
+  let currentScreen = "player";
+
+if (currentScreen === "player") {
+  currentScreen = "menu";
+  openMenu();
+}
+
+else if (currentScreen === "menu"){
+  currentScreen = "player";
+  menuOpen = false; //hehe. idk why but I love boolean terms
+  screenContent.innerHTML = "";
+}
+
+else {
+  currentScreen = "menu";
+  openMenu();
+}
+});
+
+
+function openMusicSettings(){
+
+  currentScreen = "settings";
+
+  screenContent.innerHTML = `
+  <div class="selected">
+  Shuffle: ${shuffle? "On" : "off"}
+  </div>  `;
+}
+

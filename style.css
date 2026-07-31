@@ -94,6 +94,13 @@ body {
   color: transparent;
 }
 
+.select {
+  top: -88px;
+  left: 53px ;
+  font-size: 55px;
+  color:transparent;
+}
+
 .song-title-container {
   width: 95%;
   overflow: hidden;
