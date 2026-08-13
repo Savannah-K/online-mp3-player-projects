@@ -112,6 +112,14 @@ body {
   white-space: nowrap;
 }
 
+.album-covers {
+  width: 100px;
+  height: 100px;
+  object-fit:contain;
+  margin-top: 2px;
+  border-radius: 4px;
+}
+
 .song-title {
   font-size: 20px;
   font-weight: bold;

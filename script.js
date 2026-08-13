@@ -60,6 +60,8 @@ const skins = [
 
 const menuItems = ['Themes', 'Music Settings', 'Return'];
 
+const defaultAlbumCovers = 'Assets/cat-profile.png';
+
 let selectedMenu = 0;
 
 let playlist = [];
@@ -75,7 +77,10 @@ const themeOptions = ['Background', 'Skin'];
 
 function renderSongTitle(text) {
   currentSongText = text;
-  screenContent.innerHTML = `<div class="song-title">${text}</div>`;
+  screenContent.innerHTML = `
+    <img src="${defaultAlbumCovers}" alt="Album covers" class="album-covers" />
+    <div class="song-title">${text}</div>
+  `;
   songTitle = screenContent.querySelector('.song-title');
 
   songTitle.classList.remove('scroll');
@@ -84,8 +89,7 @@ function renderSongTitle(text) {
   }
 }
 
-function buildShuffleQueue() {
-  //Prevents the same song from playing twice in a row when you enable shuffle
+function buildShuffleQueue() { //Prevents the same song from playing twice in a row when you enable shuffle
 
   shuffleQueue = playlist.map((_, i) => i).filter((i) => i !== currentSong);
 
@@ -95,8 +99,7 @@ function buildShuffleQueue() {
   }
 }
 
-function loadSong(index) {
-  //Adds song to index -> plays it + adds title info
+function loadSong(index) {  //Adds song to index -> plays it + adds title info
   const file = playlist[index];
 
   audio.src = URL.createObjectURL(file);
@@ -104,8 +107,7 @@ function loadSong(index) {
   audio.play();
 }
 
-function changeSkin(index) {
-  //skins are added to an index
+function changeSkin(index) {  //skins are added to an index
   poster.src = skins[index];
 }
 
@@ -113,8 +115,7 @@ function changeBackground(index) {
   document.body.style.backgroundImage = `url("${backgrounds[index]}")`;
 }
 
-function openMenu() {
-  //Exactly what it says. Opens the menu
+function openMenu() {  //Exactly what it says. Opens the menu
   menuOpen = true;
   currentScreen = 'menu';
 
