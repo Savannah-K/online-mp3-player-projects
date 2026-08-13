@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Jersey 25';
   src: url('Jersey25-Regular.woff2') format('woff2');
+  
 }
 
 * {
@@ -22,6 +23,8 @@ body {
   background-repeat: repeat;
   background-color:#c3cbe9;
 }
+
+
 
 .player {
   margin-top: 40px;
@@ -47,6 +50,7 @@ body {
 
   background: #eae9e7;
   overflow: hidden;
+  text-wrap: nowrap;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,7 +65,7 @@ body {
   left: 75px;
 }
 
-.wheel-button {
+.wheel-button { /* Invisible wheeel+buttons so it feels like you are actually clicking the ipod) */
   position: absolute;
   background: transparent;
   border: none;
