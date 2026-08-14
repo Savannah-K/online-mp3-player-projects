@@ -20,7 +20,8 @@ let currentScreen = 'player';
 let menuOpen = false;
 let shuffle = false;
 
-const backgrounds = [  //I worked very hard on these assets. And photopea is a pain
+const backgrounds = [
+  //I worked very hard on these assets. And photopea is a pain
   'Assets/bg-black bg rainbow stars falling .gif',
   'Assets/bg-blue bunny head.png',
   'Assets/bg-blue dark night sky stars .gif',
@@ -90,7 +91,8 @@ function renderSongTitle(text) {
   }
 }
 
-function buildShuffleQueue() { //Prevents the same song from playing twice in a row when you enable shuffle
+function buildShuffleQueue() {
+  //Prevents the same song from playing twice in a row when you enable shuffle
 
   shuffleQueue = playlist.map((_, i) => i).filter((i) => i !== currentSong);
 
@@ -100,8 +102,10 @@ function buildShuffleQueue() { //Prevents the same song from playing twice in a 
   }
 }
 
-function loadSong(index) { //Adds song to index -> plays it + adds title info
+function loadSong(index) {
   const file = playlist[index];
+
+  if (!file) return;
 
   audio.src = URL.createObjectURL(file);
   audio.play();
@@ -112,34 +116,43 @@ function loadSong(index) { //Adds song to index -> plays it + adds title info
     URL.revokeObjectURL(currentCoverUrl);
   }
 
+  currentCoverUrl = defaultAlbumCovers;
+
   if (window.jsmediatags) {
     window.jsmediatags.read(file, {
       onSuccess: (tag) => {
         const picture = tag.tags.picture;
 
-        if (picture) {
+        if (picture && picture.data && picture.data.length) {
           const byteArray = new Uint8Array(picture.data);
-          const blob = new Blob([byteArray], { type: picture.format });
+          const mime =
+            picture.format && picture.format.startsWith('image/')
+              ? picture.format
+              : 'image/jpeg';
+          const blob = new Blob([byteArray], { type: mime });
+
           currentCoverUrl = URL.createObjectURL(blob);
         } else {
-          currentCoverUrl = defaultAlbumCovers;
+          console.log('No embedded picture found in tags:', tag.tags);
         }
 
         renderSongTitle(title);
       },
-      onError: () => {
-        // No readable tags at all -> fall back to the cat
+
+      onError: (error) => {
+        console.log('jsmediatags read error:', error);
         currentCoverUrl = defaultAlbumCovers;
         renderSongTitle(title);
       },
     });
-  } else {  // if the jsmediatags not found/loading -> falls back to uwu cat pic
+  } else {
     currentCoverUrl = defaultAlbumCovers;
     renderSongTitle(title);
   }
 }
 
-function changeSkin(index) {  //skins are added to an index
+function changeSkin(index) {
+  //skins are added to an index
   poster.src = skins[index];
 }
 
@@ -147,15 +160,10 @@ function changeBackground(index) {
   document.body.style.backgroundImage = `url("${backgrounds[index]}")`;
 }
 
-function updateProgressVisibility() {
-  const showProgress = currentScreen === 'player';
-  progress.style.display = showProgress ? 'block' : 'none';
-}
-
-function openMenu() { //Exactly what it says. Opens the menu
+function openMenu() {
+  //Exactly what it says. Opens the menu
   menuOpen = true;
   currentScreen = 'menu';
-  updateProgressVisibility();
 
   screenContent.innerHTML = '';
 
@@ -172,9 +180,9 @@ function openMenu() { //Exactly what it says. Opens the menu
   });
 }
 
-function openThemes() { //themes menu, duh
+function openThemes() {
+  //themes menu, duh
   currentScreen = 'themes';
-  updateProgressVisibility();
 
   screenContent.innerHTML = `
     <div class="${selectedThemeOption === 0 ? 'selected' : ''}">
@@ -191,7 +199,6 @@ function openThemes() { //themes menu, duh
 
 function openMusicSettings() {
   currentScreen = 'settings';
-  updateProgressVisibility();
 
   screenContent.innerHTML = `
     <div class="selected">
@@ -203,11 +210,8 @@ function openMusicSettings() {
 function returnToPlayer() {
   currentScreen = 'player';
   menuOpen = false; //hehe. idk why but I love boolean terms
-  updateProgressVisibility();
   renderSongTitle(currentSongText);
 }
-
-updateProgressVisibility();
 
 fileInput.addEventListener('change', () => {
   playlist = Array.from(fileInput.files);
@@ -222,7 +226,8 @@ fileInput.addEventListener('change', () => {
   if (shuffle) buildShuffleQueue();
 });
 
-playPause.addEventListener('click', () => { //Button-Time!
+playPause.addEventListener('click', () => {
+  //Button-Time!
   if (!audio.src) return;
 
   if (audio.paused) audio.play();
@@ -357,7 +362,6 @@ selectButton.addEventListener('click', () => {
   }
 
   if (!menuOpen) return;
-  if (!menuOpen) hide
 
   if (selectedMenu === 0) {
     openThemes();
