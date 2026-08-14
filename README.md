@@ -4,9 +4,13 @@
 I made this project for Hack Clubs Horizons. This project is an attempt for me to make a cute y2k themed MP3 player, complete with different themes I made for the iPods!You can upload local mp3 files to play + display them in the image of the mp3 player!
 
 ## Screenshots!
-[C:\Users\savan\OneDrive\Pictures\Screenshots\Screenshot 2026-08-14 164623.png]
-[C:\Users\savan\OneDrive\Pictures\Screenshots\Screenshot 2026-08-14 164639.png]
-["C:\Users\savan\OneDrive\Pictures\Screenshots\Screenshot 2026-08-14 164700.png"]
+![](Assets/Projecct-Screenshots/Screenshot 2026-08-14 164700.png)
+![](Assets/Projecct-Screenshots/Screenshot 2026-08-14 164639.png)
+![](Assets/Projecct-Screenshots/Screenshot 2026-08-14 164623.png)
+![](Assets/Projecct-Screenshots/Screenshot 2026-08-14 164554.png)
+
+
+
 
 ## Functions
 - Plays mp3 files locally off your computer
@@ -38,6 +42,7 @@ MENU — Open the menu (Themes, Music Settings, Return)
 
 - I for the life of me could not get album covers to read and show up in the player, so that is a future project. Enjoy art by me in the meantime.
 - Some of the mp3 player themes are a bit blurred
+- Oh, and Project Screenshots file has a typo
 
 
 ## Acknowledgements + Credits
