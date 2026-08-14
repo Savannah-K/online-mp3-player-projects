@@ -27,6 +27,23 @@ I made this project for Hack Clubs Horizons. This project is an attempt for me t
 - html
 - javascript
 - css
+- 
+## Dependencies
+
+This project (tried to) use [jsmediatags](https://github.com/aadsm/jsmediatags) to read MP3 metadata.
+
+## How It Was Made 
+
+- Set up the text and appearances with html and css, I already had the assets pre-collected or made so it gave me a good visual. (Did initially have a css ver. of the player based on the one I took inspiration from in the credits section before switching to my desired themed ones)
+- Added in all my assets (which I later alphabetized bc why not)
+- Got a single-upload song display going to adjust css and html (Positioning and styling essentially) Just to get a good base functioning player down before adding more complex functions and diving into JavaScript More
+- Made all the buttons functioning and gave (Play, next, etc).
+- I then added themes and worked on the menu, getting shuffle to work (Got put on the backburner for a while but fixed it recently)
+- Added an album cover section (that was SUPPOSED to be a backup for songs with no cover metadata)
+- Then I fixed the autoplay bug so that it actually proceeded to the next song without pressing the next button.
+- Bug I dealt with most: Positioning bugs. Especially: Song title, marquee, and the buttons. Which are transparent so sometimes when I thought it was broken it was just pushed down somewhere.
+- I dont know enough JavaScript and the internet was failing me on how to make an updating album image. So thats a future project.
+
 
 ## How to use!
 
@@ -41,9 +58,13 @@ MENU — Open the menu (Themes, Music Settings, Return)
 ## Limitations and Issues
 
 - I for the life of me could not get album covers to read and show up in the player, so that is a future project. Enjoy art by me in the meantime.
-- Some of the mp3 player themes are a bit blurred
-- Oh, and Project Screenshots file has a typo
+- Some of the mp3 player themes are a bit blurred and some backgrounds look scuffed bc of repeating tiles
+- Oh, and Project Screenshots file has a typo (Projecct)
+- Some of the buttons you might need to click around the area a bit. So maybe not the most accurate.
 
+## AI Disclosure
+
+- For some of the JavaScript, I used AI as a tutor. If I ran into bugs and was struggling extensively to figure them out or fix them myself, I would use AI as a debugging tool and mentor. I still worked through, tested, and implemented the project myself.
 
 ## Acknowledgements + Credits
 
@@ -51,4 +72,6 @@ MENU — Open the menu (Themes, Music Settings, Return)
  - Album Cover Art: By Me
  - Backgrounds and patterns sourced mostly from pinterest and [scripteds resources](https://scripted.neocities.org/)
  - I do not own and did not make any of the backgrounds or skin arts.
+
+   # This is my first ever README so please keep that in mind.
  
