@@ -127,7 +127,6 @@ body {
   margin-top: 100px;
   margin-bottom: 20px;
   color: #000000;
-  animation: marquee 8s linear infinite;
 }
 
 @keyframes marquee {
@@ -196,9 +195,11 @@ body {
 }
 
 .screen-content{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    width: 100%;
-   height: 100%;
-   text-align: center;
+   overflow: hidden;
    padding-top: 20px;
 }
 
@@ -206,6 +207,16 @@ body {
 
   background: #000000;
   color: white;
-  padding: 4px
+  padding: 3px 0 10px;
+  width: 100%;
+  text-align: center;
 
+}
+
+.menu-item {
+  width:100%;
+  font-size: 30px;
+  text-align: center;
+  padding: 3px 0 10px;
+  
 }
