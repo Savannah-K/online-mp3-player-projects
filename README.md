@@ -5,9 +5,9 @@ I made this project for Hack Clubs Horizons. This project is an attempt for me t
 
 ## Screenshots!
 ![](Assets/Projecct-Screenshots/Screenshot%202026-08-14%20164700.png)
-![](Assets/Projecct-Screenshots/Screenshot2026-08-14164639.png)
-![](Assets/Projecct-Screenshots/Screenshot2026-08-14164623.png)
-![](Assets/Projecct-Screenshots/Screenshot2026-08-14164554.png)
+![](Assets/Projecct-Screenshots/Screenshot%202026-08-14%20164639.png)
+![](Assets/Projecct-Screenshots/Screenshot%202026-08-14%20164623.png)
+![](Assets/Projecct-Screenshots/Screenshot%202026-08-14%20164554.png)
 
 
 
