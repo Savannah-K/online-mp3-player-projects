@@ -213,6 +213,23 @@ function returnToPlayer() {
   renderSongTitle(currentSongText);
 }
 
+function playNextSong() {
+  if (playlist.length === 0) return;
+
+  if (shuffle) {
+    if (shuffleQueue.length === 0) {
+      buildShuffleQueue();
+    }
+
+    shuffleHistory.push(currentSong);
+    currentSong = shuffleQueue.shift();
+  } else {
+    currentSong = (currentSong + 1) % playlist.length;
+  }
+
+  loadSong(currentSong);
+}
+
 fileInput.addEventListener('change', () => {
   playlist = Array.from(fileInput.files);
 
@@ -254,6 +271,10 @@ audio.addEventListener('pause', () => {
   playPause.textContent = '▶';
 });
 
+audio.addEventListener('ended', () => {
+  playNextSong();
+});
+
 nextButton.addEventListener('click', () => {
   if (currentScreen === 'themes') {
     selectedThemeOption = (selectedThemeOption + 1) % themeOptions.length;
@@ -267,20 +288,7 @@ nextButton.addEventListener('click', () => {
     return;
   }
 
-  if (playlist.length === 0) return;
-
-  if (shuffle) {
-    if (shuffleQueue.length === 0) {
-      buildShuffleQueue();
-    }
-
-    shuffleHistory.push(currentSong);
-    currentSong = shuffleQueue.shift();
-  } else {
-    currentSong = (currentSong + 1) % playlist.length;
-  }
-
-  loadSong(currentSong);
+  playNextSong(currentSong);
 });
 
 previousButton.addEventListener('click', () => {
