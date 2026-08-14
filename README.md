@@ -21,7 +21,7 @@ I made this project for Hack Clubs Horizons. This project is an attempt for me t
 
 ## How to use!
 
-- Access here -> https://savannah-k.github.io/online-mp3-player-projects/
+- Access here -> [https://savannah-k.github.io/online-mp3-player-projects/]
 - Use device controls: ▶ / ❚❚ — Play / Pause
 ▶ (next) / ◀ (previous) — Skip tracks
 MENU — Open the menu (Themes, Music Settings, Return)
