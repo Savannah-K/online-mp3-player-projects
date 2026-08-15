@@ -3,6 +3,8 @@
 
 I made this project for Hack Clubs Horizons. This project is an attempt for me to make a cute y2k themed MP3 player, complete with different themes I made for the iPods!You can upload local mp3 files to play + display them in the image of the mp3 player!
 
+(ReadMe was edited entirely in the GitHub Website, Not VS Code)
+
 ## Screenshots!
 ![](Assets/Projecct-Screenshots/Screenshot%202026-08-14%20164700.png)
 ![](Assets/Projecct-Screenshots/Screenshot%202026-08-14%20164639.png)
