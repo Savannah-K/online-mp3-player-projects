@@ -1,9 +1,9 @@
 
 # Web MP3 Player
 
-I made this project for Hack Clubs Horizons. This project is an attempt for me to make a cute y2k themed MP3 player, complete with different themes I made for the iPods!You can upload local mp3 files to play + display them in the image of the mp3 player!
+I made this project for Hack Clubs Horizons. This project is an attempt for me to make a cute Y2K-themed MP3 player, complete with different themes I made for the iPods!You can upload local mp3 files to play and display them in the mp3 player's image!
 
-(ReadMe was edited entirely in the GitHub Website, Not VS Code)
+(ReadMe was edited entirely in the GitHub Website, not VS Code)
 
 ## Screenshots!
 ![](Assets/Projecct-Screenshots/Screenshot%202026-08-14%20164700.png)
@@ -18,10 +18,10 @@ I made this project for Hack Clubs Horizons. This project is an attempt for me t
 - Plays mp3 files locally off your computer
 - Play/Pause/Next/select/menu Buttons
 - Progress bar (You can move it around to different times in the music)
-- Multiple songs supported!You just need to select multiple at a time in your files.
+- Multiple songs supported! You just need to select multiple files at a time.
 - shuffle mode! If you want to switch things up, you can go to the menu and toggle shuffle. It will not repeat a song until it has cycled through your added list.
-- Themes! This was my favorite part to work on. In the menu you can cycle through all the ipod skins and backgrounds separately to achieve your desired look.
-- All the navigation is available on the ipod picture
+- Themes! This was my favorite part to work on. In the menu, you can cycle through all the iPod skins and backgrounds separately to achieve your desired look.
+- All the navigation is available on the iPod picture
 - Below the player is a button to add music files.
 
 ## Code Used
@@ -29,17 +29,16 @@ I made this project for Hack Clubs Horizons. This project is an attempt for me t
 - html
 - javascript
 - css
-- 
 ## Dependencies
 
 This project (tried to) use [jsmediatags](https://github.com/aadsm/jsmediatags) to read MP3 metadata.
 
 ## How It Was Made 
 
-- Set up the text and appearances with html and css, I already had the assets pre-collected or made so it gave me a good visual. (Did initially have a css ver. of the player based on the one I took inspiration from in the credits section before switching to my desired themed ones)
+- Set up the text and appearances with HTML and css I already had the assets pre-collected or made, so it gave me a good visual. (Did initially have a css ver. of the player based on the one I took inspiration from in the credits section before switching to my desired themed ones)
 - Added in all my assets (which I later alphabetized bc why not)
 - Got a single-upload song display going to adjust css and html (Positioning and styling essentially) Just to get a good base functioning player down before adding more complex functions and diving into JavaScript More
-- Made all the buttons functioning and gave (Play, next, etc).
+- Made all the buttons function and gave (Play, next, etc).
 - I then added themes and worked on the menu, getting shuffle to work (Got put on the backburner for a while but fixed it recently)
 - Added an album cover section (that was SUPPOSED to be a backup for songs with no cover metadata)
 - Then I fixed the autoplay bug so that it actually proceeded to the next song without pressing the next button.
@@ -74,6 +73,4 @@ MENU — Open the menu (Themes, Music Settings, Return)
  - Album Cover Art: By Me
  - Backgrounds and patterns sourced mostly from pinterest and [scripteds resources](https://scripted.neocities.org/)
  - I do not own and did not make any of the backgrounds or skin arts.
-
-   # This is my first ever README so please keep that in mind.
  
